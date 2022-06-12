@@ -1,3 +1,5 @@
+//https://openfoodfacts.github.io/api-documentation/
+
 import fetch from "node-fetch";
 
 const apiUrl = "https://world.openfoodfacts.org/api/2";
