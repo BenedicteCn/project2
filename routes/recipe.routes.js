@@ -27,7 +27,10 @@ router.get("/:name", async (req, res, next) => {
 router.get("category/:name", async (req, res, next) => {
   /**Your code goes here */
   try {
-    const oneRecipe = await Recipe.find({ category: req.params.body });
+    req.query.category === "Dessert"; // true
+    req.query.category === "Starter"; // true
+    const oneRecipeByCat = await Recipe.find({ category: req.query.category });
+    res.status(200).json(oneRecipeByCat);
   } catch (err) {
     next(err);
   }

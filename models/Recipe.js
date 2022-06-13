@@ -4,6 +4,8 @@ const recipeSchema = new Schema(
   {
     name: String,
     instruction: String,
+    preparation_time: String,
+    baking_time: String,
     category: {
       type: SchemaTypes.String,
       enum: [
@@ -16,6 +18,7 @@ const recipeSchema = new Schema(
       ],
       required: true,
     },
+    quantity_of_ingredients: String,
     ingredients: [{ type: String }],
   },
   {
