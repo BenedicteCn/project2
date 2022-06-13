@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <link rel="stylesheet" href="stylesheets/style.css" /> -->
+    <script type="module" src="../public/javascript/index.js"></script>
+    <title>Home Page</title>
+  </head>
+  <body>
+    <button id="login">Login</button>
+    <button id="create">Create account</button>
+    <div class="search">
+      <ul>
+        <li>Appetizer</li>
+        <ul>
+          <li></li>
+        </ul>
+        <li>Starter</li>
+        <li>Drinks</li>
+        <ul>
+          <li id="strawberry">Strawberry Agua Fresca</li>
+        </ul>
+        <li>Main Dish</li>
+        <li>Dessert</li>
+        <ul>
+          <li id="crepe">Easy crêpes</li>
+        </ul>
+      </ul>
+    </div>
+    <div class="search-name">
+      <h2>Search recipe by name</h2>
+      <input type="text" name="recipe-name" />
+      <button id="fetch-one">Search</button>
+    </div>
+    <div class="recipe-container">
+      <template id="template-recipe">
+        <div class="recipe-info">
+          <div class="recipe-id">Recipe ID</div>
+          <div class="recipe-name">Recipe name</div>
+          <div class="recipe-image">Recipe image</div>
+          <div class="recipe-instruction">Recipe instruction</div>
+          <div class="recipe-preparation-time">Recipe preparation time</div>
+          <div class="recipe-baking-time">Recipe baking time</div>
+          <div class="recipe-category">Recipe category</div>
+          <div class="recipe-quantity">Recipe quantity</div>
+          <div class="ingredient-id">Ingredient id</div>
+        </div>
+      </template>
+    </div>
+    <div class="ingredient-container">
+      <template id="template-ingredient">
+        <div class="ingredient-info">
+          <div class="ingredient-id">Ingredient id</div>
+          <div class="ingredient-image">Ingredient image</div>
+          <div class="ingredient-name">Ingredient name</div>
+          <div class="ingredient-nutriscore">Ingredient nutriscore</div>
+          <div class="ingredient-ecoscore">Ingredient ecoscore</div>
+        </div>
+      </template>
+    </div>
+  </body>
+</html>
