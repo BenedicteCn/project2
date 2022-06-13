@@ -1,10 +1,20 @@
 const router = require("express").Router();
 
-const Comment = require("../models/Comment.model");
+const Comment = require("../models/Comment");
+const isAuthenticated = require("../middleware/isAuthenticated");
+
+// See all comments
+router.get("/", async (req, res, next) => {
+  try {
+    const allComments = await Comment.find();
+    res.status(200).json(allComments);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // create a comment: route to be discussed (should have recipe id?)
-
-router.post("/create", async (req, res) => {
+router.post("/create", isAuthenticated, async (req, res) => {
   try {
     const createOneComment = await Comment.create(req.body);
   } catch (e) {
@@ -18,7 +28,7 @@ router.post("/create", async (req, res) => {
 
 // update a comment
 
-router.post("/comment/:id", async (req, res, next) => {
+router.post("/:id", isAuthenticated, async (req, res, next) => {
   try {
     const updateComment = await Comment.findByIdAndUpdate(
       req.params.id,
@@ -35,7 +45,7 @@ router.post("/comment/:id", async (req, res, next) => {
 
 // delete a comment
 
-router.delete("/comment/:id", async (req, res, next) => {
+router.delete("/:id", isAuthenticated, async (req, res, next) => {
   try {
     const deletedThing = await Comment.findByIdAndDelete(req.params.id);
     console.log(deletedThing);
@@ -44,3 +54,4 @@ router.delete("/comment/:id", async (req, res, next) => {
     next(err);
   }
 });
+module.exports = router;

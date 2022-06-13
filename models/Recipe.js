@@ -1,4 +1,4 @@
-const { Schema, SchemaTypes, model } = require('mongoose');
+const { Schema, SchemaTypes, model } = require("mongoose");
 
 const recipeSchema = new Schema(
   {
@@ -6,21 +6,23 @@ const recipeSchema = new Schema(
     instruction: String,
     category: {
       type: SchemaTypes.String,
-      enum: ['Dessert', 'Plat', 'Entree'],
+      enum: [
+        "Dessert",
+        "Main Dish",
+        "Starter",
+        "Drinks",
+        "Breakfast/Brunch",
+        "Appetizer",
+      ],
       required: true,
     },
     ingredients: [{ type: String }],
-
-    user: {
-      type: SchemaTypes.ObjectId,
-      ref: 'User',
-    },
   },
   {
     timestamps: true,
   }
 );
 
-const Recipe = model('Recipe', recipeSchema);
+const Recipe = model("Recipe", recipeSchema);
 
 module.exports = Recipe;

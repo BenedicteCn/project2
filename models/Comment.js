@@ -1,15 +1,15 @@
-const { Schema, SchemaTypes, model } = require('mongoose');
+const { Schema, SchemaTypes, model } = require("mongoose");
 
 const commentSchema = new Schema(
   {
     content: String,
     recipe: {
       type: SchemaTypes.ObjectId,
-      ref: 'Recipe',
+      ref: "Recipe",
     },
     user: {
       type: SchemaTypes.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
   },
   {
@@ -17,6 +17,6 @@ const commentSchema = new Schema(
   }
 );
 
-const Comment = model('Comment', commentSchema);
+const Comment = model("Comment", commentSchema);
 
 module.exports = Comment;
