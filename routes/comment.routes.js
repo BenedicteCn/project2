@@ -22,13 +22,13 @@ router.post("/create", isAuthenticated, async (req, res) => {
   }
   const comment = req.body;
   res.status(201).json({
-    message: `${comment.title} has been CREATED`,
+    message: `Your comment has been CREATED`,
   });
 });
 
 // update a comment
 
-router.post("/:id", isAuthenticated, async (req, res, next) => {
+router.patch("/:id", isAuthenticated, async (req, res, next) => {
   try {
     const updateComment = await Comment.findByIdAndUpdate(
       req.params.id,
