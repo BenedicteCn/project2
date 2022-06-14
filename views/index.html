@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- <link rel="stylesheet" href="stylesheets/style.css" /> -->
+    <link rel="stylesheet" href="../public/stylesheets/style.css" />
     <script type="module" src="../public/javascript/index.js"></script>
     <title>Home Page</title>
   </head>
   <body>
-    <button id="login">Login</button>
-    <button id="create">Create account</button>
+    <div id="connexion">
+      <button id="login">Login</button>
+      <button id="create">Create account</button>
+    </div>
     <div class="search">
       <ul>
         <li>Appetizer</li>
@@ -22,44 +24,65 @@
         <li>Drinks</li>
         <ul>
           <li id="strawberry">Strawberry Agua Fresca</li>
+          <li id="banana">Banana Oat Smoothie</li>
         </ul>
         <li>Main Dish</li>
+        <ul>
+          <li id="omelette">Basic Omelette</li>
+        </ul>
         <li>Dessert</li>
         <ul>
           <li id="crepe">Easy crêpes</li>
+          <li id="crumble">Crumble pommes, fraises, rhubarbe aux speculoos</li>
         </ul>
       </ul>
     </div>
-    <div class="search-name">
-      <h2>Search recipe by name</h2>
-      <input type="text" name="recipe-name" />
-      <button id="fetch-one">Search</button>
-    </div>
-    <div class="recipe-container">
-      <template id="template-recipe">
-        <div class="recipe-info">
-          <div class="recipe-id">Recipe ID</div>
-          <div class="recipe-name">Recipe name</div>
-          <div class="recipe-image">Recipe image</div>
-          <div class="recipe-instruction">Recipe instruction</div>
-          <div class="recipe-preparation-time">Recipe preparation time</div>
-          <div class="recipe-baking-time">Recipe baking time</div>
-          <div class="recipe-category">Recipe category</div>
-          <div class="recipe-quantity">Recipe quantity</div>
-          <div class="ingredient-id">Ingredient id</div>
-        </div>
-      </template>
-    </div>
-    <div class="ingredient-container">
-      <template id="template-ingredient">
-        <div class="ingredient-info">
-          <div class="ingredient-id">Ingredient id</div>
-          <div class="ingredient-image">Ingredient image</div>
-          <div class="ingredient-name">Ingredient name</div>
-          <div class="ingredient-nutriscore">Ingredient nutriscore</div>
-          <div class="ingredient-ecoscore">Ingredient ecoscore</div>
-        </div>
-      </template>
+    <div id="center">
+      <div class="search-name">
+        <h2>Search recipe by name</h2>
+        <input type="text" name="recipe-name" />
+        <button id="fetch-one">Search</button>
+      </div>
+      <div class="recipe-container">
+        <template id="template-recipe">
+          <div class="recipe-info">
+            <div class="recipe-id">Recipe ID</div>
+            <div class="recipe-name">Recipe name</div>
+            <div class="recipe-image">Recipe image</div>
+            <div class="recipe-instruction">Recipe instruction</div>
+            <div class="recipe-preparation-time">Recipe preparation time</div>
+            <div class="recipe-baking-time">Recipe baking time</div>
+            <div class="recipe-category">Recipe category</div>
+            <div class="recipe-quantity">Recipe quantity</div>
+            <div class="ingredient-id">Ingredient id</div>
+          </div>
+        </template>
+      </div>
+      <div class="ingredient-container">
+        <template id="template-ingredient">
+          <div class="ingredient-info">
+            <div class="ingredient-id">Ingredient id</div>
+            <div class="ingredient-image">Ingredient image</div>
+            <div class="ingredient-name">Ingredient name</div>
+            <div class="ingredient-nutriscore">Ingredient nutriscore</div>
+            <div class="ingredient-ecoscore">Ingredient ecoscore</div>
+          </div>
+        </template>
+      </div>
+      <hr />
+      <div class="comments">
+        <h3>Leave us a comment</h3>
+        <form>
+          <textarea id="" placeholder="Add Your Comment" value=" "></textarea>
+          <div class="btn">
+            <input id="submit" type="submit" value="Comment" />
+          </div>
+        </form>
+      </div>
+      <div class="comments">
+        <h3>Comments</h3>
+        <div id="comment-box"></div>
+      </div>
     </div>
   </body>
 </html>

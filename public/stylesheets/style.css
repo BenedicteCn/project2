@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo&family=Open+Sans:wght@300;400&display=swap');
+
+*{
+  font-family: 'Arimo', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
+}
+
+button {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 3px 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  border-radius: 50px;
+  border: 1px solid rgb(110, 109, 109);
+
+}
+
+#submit {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 3px 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  border-radius: 50px;
+  border: 1px solid rgb(110, 109, 109);
+
+}
+
+#connexion {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#center {
+
+  text-align: center;
+}
