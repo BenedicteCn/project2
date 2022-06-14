@@ -1,4 +1,4 @@
-const { Schema, SchemaTypes, model } = require("mongoose");
+const { Schema, SchemaTypes, model } = require('mongoose');
 
 const recipeSchema = new Schema(
   {
@@ -10,12 +10,12 @@ const recipeSchema = new Schema(
     category: {
       type: SchemaTypes.String,
       enum: [
-        "Dessert",
-        "Main Dish",
-        "Starter",
-        "Drinks",
-        "Breakfast/Brunch",
-        "Appetizer",
+        'Dessert',
+        'Main Dish',
+        'Starter',
+        'Drinks',
+        'Breakfast/Brunch',
+        'Appetizer',
       ],
       required: true,
     },
@@ -27,6 +27,6 @@ const recipeSchema = new Schema(
   }
 );
 
-const Recipe = model("Recipe", recipeSchema);
+const Recipe = model('Recipe', recipeSchema);
 
 module.exports = Recipe;
