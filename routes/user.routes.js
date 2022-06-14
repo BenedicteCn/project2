@@ -4,6 +4,7 @@ const User = require("../models/User.model");
 const saltRounds = 10;
 const jsonwebtoken = require("jsonwebtoken");
 const isAuthenticated = require("../middleware/isAuthenticated");
+const Favorite = require("../models/Favorite");
 
 // router.get("/signup", async (req, res, next) => {
 //   const root = __dirname.replace("routes", "");
@@ -68,16 +69,28 @@ router.post("/login", async (req, res, next) => {
 
   const authToken = jsonwebtoken.sign(payload, process.env.TOKEN_SECRET, {
     algorithm: "HS256",
-    expiresIn: "150s",
+    expiresIn: "800s",
   });
 
   res.status(200).json({ isLoggedIn: true, authToken });
 });
 
 // display user's profile:
-router.get("/user/:id", isAuthenticated, async (req, res, next) => {
+router.get("/:id", isAuthenticated, async (req, res, next) => {
   try {
     const userId = req.params.id;
+    const oneUser = await User.findById(userId);
+    res.status(200).json(oneUser);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/favorites/:id", isAuthenticated, async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    const allFavorites = await Favorite.find();
+    res.status(200).json(allFavorites);
     const oneUser = await User.findById(userId);
     res.status(200).json(oneUser);
   } catch (err) {
