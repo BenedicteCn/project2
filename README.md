@@ -1,4 +1,4 @@
-# ++RECIPES | Projet 2: Tzu Zu Chiu & Bénédicte Coulon
+# ++RECIPES | Projet 2: Tzu Yu Chiu & Bénédicte Coulon
 
 ## Introduction
 

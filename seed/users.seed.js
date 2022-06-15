@@ -1,12 +1,13 @@
 const User = require("../models/User.model.js");
 const openConnection = require("../db/index.js");
 const { default: mongoose } = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const users = [
   {
     username: "tzu",
     email: "tzu@gmail.com",
-    password: "tzu123",
+    password: bcrypt.hashSync("tzu123", 10),
     role: "admin",
   },
 
