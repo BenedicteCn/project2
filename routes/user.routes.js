@@ -65,7 +65,7 @@ router.post("/login", async (req, res, next) => {
     return;
   }
 
-  const payload = { username };
+  const payload = { username, _id: foundUser._id };
 
   const authToken = jsonwebtoken.sign(payload, process.env.TOKEN_SECRET, {
     algorithm: "HS256",
@@ -95,6 +95,28 @@ router.get("/favorites/:id", isAuthenticated, async (req, res, next) => {
     res.status(200).json(oneUser);
   } catch (err) {
     next(err);
+  }
+});
+
+router.get("/verify", async (req, res, next) => {
+  // Verify the bearer token is still valid
+  // get the bearer token from the header
+  const { authorization } = req.headers;
+
+  // isolate the jwt
+  const token = authorization.replace("Bearer ", "");
+  console.log({ token });
+
+  try {
+    // verify the jwt with the jsonwebtoken package
+    const payload = jsonwebtoken.verify(token, process.env.TOKEN_SECRET);
+    console.log({ payload });
+
+    // send the user the payload
+    res.json({ token, payload });
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: "Invalid token" });
   }
 });
 
