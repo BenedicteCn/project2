@@ -20,6 +20,8 @@ We use the Open Food Facts API to display the ingredients.
 
 ## TEST IT!
 
-// Postman link
+// Postman link:
+
+Find our project here: https://project-two-tzu-ben.herokuapp.com/
 
 Enjoy ;) :heart:
