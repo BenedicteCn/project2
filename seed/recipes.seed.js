@@ -5,7 +5,10 @@ const { default: mongoose } = require("mongoose");
 const puppeteer = require("puppeteer");
 
 async function scrapeProduct(url) {
-  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const page = await browser.newPage();
   await page.goto(url);
   const [el] = await page.$x(
