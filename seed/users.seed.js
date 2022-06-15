@@ -4,31 +4,28 @@ const { default: mongoose } = require("mongoose");
 
 const users = [
   {
-    name: "tzu",
+    username: "tzu",
     email: "tzu@gmail.com",
     password: "tzu123",
     role: "admin",
   },
 
   {
-    name: "bene",
+    username: "bene",
     email: "bene@gmail.com",
     password: "bene123",
-    role: "user",
   },
 
   {
-    name: "robert",
+    username: "robert",
     email: "robert@gmail.com",
     password: "robert123",
-    role: "user",
   },
 
   {
-    name: "kate",
+    username: "kate",
     email: "kate@gmail.com",
     password: "kate123",
-    role: "user",
   },
 ];
 
