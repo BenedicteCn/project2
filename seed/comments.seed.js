@@ -5,31 +5,31 @@ const { default: mongoose } = require("mongoose");
 const comments = [
   {
     content: "great recipe!",
-    user: "",
+    user: "62a9ba5b0630e31d2dc3e24c",
     recipe: "",
   },
 
   {
     content: "love it <3",
-    user: "",
+    user: "62a9ba5b0630e31d2dc3e24c",
     recipe: "",
   },
 
   {
     content: "nice!",
-    user: "",
+    user: "62a9ba5b0630e31d2dc3e24c",
     recipe: "",
   },
 
   {
     content: "will send it to grandma!",
-    user: "",
+    user: "62a9ba5b0630e31d2dc3e24d",
     recipe: "",
   },
 
   {
     content: "cool",
-    user: "",
+    user: "62a9ba5b0630e31d2dc3e24d",
     recipe: "",
   },
 ];
