@@ -26,10 +26,17 @@ router.post('/signup', async (req, res, next) => {
     const { username, password } = req.body;
 
     const foundUser = await User.findOne({ username });
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (foundUser) {
       res
         .status(401)
         .json({ message: 'Username already exists. Try logging in instead.' });
+      return;
+    }
+    if (!email.match(regex)) {
+      res.status(500).json({
+        message: 'Must be an email adress (example : anna@gmail.com)',
+      });
       return;
     }
 
@@ -120,4 +127,28 @@ router.get('/verify', async (req, res, next) => {
   }
 });
 
+// user update password:
+router.patch('/updatepassword/', isAuthenticated, async (req, res, next) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    const isPasswordMatched = await bcrypt.compare(
+      oldPassword,
+      req.user.password
+    );
+
+    if (isPasswordMatched) {
+      const salt = await bcrypt.genSalt(saltRounds);
+      const hashedPassword = await bcrypt.hash(newPassword, salt);
+      const updatedUser = await User.findByIdAndUpdate(req.user._id, {
+        password: hashedPassword,
+      });
+      res.status(200).json({ updatedUser, message: 'Nice password mate' });
+    } else {
+      res.status(401).json({ message: 'password does not match' });
+      return;
+    }
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;
