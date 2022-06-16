@@ -1,45 +1,54 @@
+const User = require("../models/User.model.js");
+const Recipe = require("../models/Recipe.js");
 const Comment = require("../models/Comment.js");
+
 const openConnection = require("../db/index.js");
 const { default: mongoose } = require("mongoose");
 
-const comments = [
-  {
-    content: "great recipe!",
-    user: "62a9ba5b0630e31d2dc3e24c",
-    recipe: "",
-  },
+const comments = [];
 
-  {
-    content: "love it <3",
-    user: "62a9ba5b0630e31d2dc3e24c",
-    recipe: "",
-  },
-
-  {
-    content: "nice!",
-    user: "62a9ba5b0630e31d2dc3e24c",
-    recipe: "",
-  },
-
-  {
-    content: "will send it to grandma!",
-    user: "62a9ba5b0630e31d2dc3e24d",
-    recipe: "",
-  },
-
-  {
-    content: "cool",
-    user: "62a9ba5b0630e31d2dc3e24d",
-    recipe: "",
-  },
-];
-
-async function seedUsers() {
+async function seedComment() {
   await openConnection;
+  await Comment.deleteMany();
+  const allUsers = await User.find();
+  const allRecipes = await Recipe.find();
+  comments.push({
+    content: "super good!",
+    recipe: allRecipes[2]._id,
+    user: allUsers[0]._id,
+  });
+  comments.push({
+    content: "great!",
+    recipe: allRecipes[1]._id,
+    user: allUsers[0]._id,
+  });
+  comments.push({
+    content: "love it!",
+    recipe: allRecipes[0]._id,
+    user: allUsers[0]._id,
+  });
+  comments.push({
+    content: "amazing!",
+    recipe: allRecipes[1]._id,
+    user: allUsers[1]._id,
+  });
+
+  comments.push({
+    content: "tasty:)",
+    recipe: allRecipes[2]._id,
+    user: allUsers[1]._id,
+  });
+
+  comments.push({
+    content: "awesome!",
+    recipe: allRecipes[3]._id,
+    user: allUsers[3]._id,
+  });
+
   const createdComments = await Comment.create(comments);
   console.log(`Created ${createdComments.length} comments.`);
   await mongoose.connection.close();
   console.log("Connection closed.");
 }
 
-seedUsers();
+seedComment();

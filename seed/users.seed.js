@@ -32,6 +32,7 @@ const users = [
 
 async function seedUsers() {
   await openConnection;
+  await User.deleteMany();
   const createdUsers = await User.create(users);
   console.log(`Created ${createdUsers.length} users.`);
   await mongoose.connection.close();
