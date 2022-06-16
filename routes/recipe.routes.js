@@ -31,7 +31,7 @@ router.get('/category/:name', async (req, res, next) => {
   try {
     const categoryName = req.params.name;
     const allRecipes = await Recipe.find({
-      name: { $regex: categoryName, $options: 'i' },
+      categoryName,
     });
 
     res.status(200).json(allRecipes);
