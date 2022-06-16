@@ -20,7 +20,7 @@ We use the Open Food Facts API to display the ingredients.
 
 ## TEST IT!
 
-Find the documentation here:
+Find the documentation here: https://documenter.getpostman.com/view/21216938/UzBjrTKm
 
 Find our project here: https://tzuyu-benedicte.herokuapp.com/recipe
 
