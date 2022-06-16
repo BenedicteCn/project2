@@ -1,10 +1,10 @@
-const router = require("express").Router();
-const bcrypt = require("bcryptjs");
-const User = require("../models/User.model");
+const router = require('express').Router();
+const bcrypt = require('bcryptjs');
+const User = require('../models/User.model');
 const saltRounds = 10;
-const jsonwebtoken = require("jsonwebtoken");
-const isAuthenticated = require("../middleware/isAuthenticated");
-const Favorite = require("../models/Favorite");
+const jsonwebtoken = require('jsonwebtoken');
+const isAuthenticated = require('../middleware/isAuthenticated');
+const Favorite = require('../models/Favorite');
 
 // router.get("/signup", async (req, res, next) => {
 //   const root = __dirname.replace("routes", "");
@@ -12,7 +12,7 @@ const Favorite = require("../models/Favorite");
 //   res.sendFile("public/auth/signup.html", { root });
 // });
 
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const allUsers = await User.find();
     res.status(200).json(allUsers);
@@ -21,7 +21,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/signup", async (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
   try {
     const { username, password } = req.body;
 
@@ -29,7 +29,7 @@ router.post("/signup", async (req, res, next) => {
     if (foundUser) {
       res
         .status(401)
-        .json({ message: "Username already exists. Try logging in instead." });
+        .json({ message: 'Username already exists. Try logging in instead.' });
       return;
     }
 
@@ -50,33 +50,33 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
-router.post("/login", async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
   const foundUser = await User.findOne({ username });
 
   if (!foundUser) {
-    res.status(404).json({ message: "username does not exist" });
+    res.status(404).json({ message: 'username does not exist' });
     return;
   }
 
   const isPasswordMatched = await bcrypt.compare(password, foundUser.password);
   if (!isPasswordMatched) {
-    res.status(401).json({ message: "password does not match" });
+    res.status(401).json({ message: 'password does not match' });
     return;
   }
 
   const payload = { username, _id: foundUser._id };
 
   const authToken = jsonwebtoken.sign(payload, process.env.TOKEN_SECRET, {
-    algorithm: "HS256",
-    expiresIn: "800s",
+    algorithm: 'HS256',
+    expiresIn: '800s',
   });
 
   res.status(200).json({ isLoggedIn: true, authToken });
 });
 
 // display user's profile:
-router.get("/:id", isAuthenticated, async (req, res, next) => {
+router.get('/:id', isAuthenticated, async (req, res, next) => {
   try {
     const userId = req.params.id;
     const oneUser = await User.findById(userId);
@@ -86,7 +86,7 @@ router.get("/:id", isAuthenticated, async (req, res, next) => {
   }
 });
 
-router.get("/favorites/:id", isAuthenticated, async (req, res, next) => {
+router.get('/favorites/:id', isAuthenticated, async (req, res, next) => {
   try {
     const userId = req.params.id;
     const allFavorites = await Favorite.find();
@@ -98,13 +98,13 @@ router.get("/favorites/:id", isAuthenticated, async (req, res, next) => {
   }
 });
 
-router.get("/verify", async (req, res, next) => {
+router.get('/verify', async (req, res, next) => {
   // Verify the bearer token is still valid
   // get the bearer token from the header
   const { authorization } = req.headers;
 
   // isolate the jwt
-  const token = authorization.replace("Bearer ", "");
+  const token = authorization.replace('Bearer ', '');
   console.log({ token });
 
   try {
@@ -116,7 +116,7 @@ router.get("/verify", async (req, res, next) => {
     res.json({ token, payload });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: "Invalid token" });
+    res.status(400).json({ message: 'Invalid token' });
   }
 });
 
