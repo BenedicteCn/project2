@@ -18,7 +18,7 @@ router.get('/:name', async (req, res, next) => {
   try {
     const recipeName = req.params.name;
 
-    const OneRecipe = await Character.find({
+    const OneRecipe = await Recipe.find({
       name: { $regex: recipeName, $options: 'i' },
     });
     res.status(200).json(OneRecipe);
