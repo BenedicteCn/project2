@@ -1,11 +1,11 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const Comment = require("../models/Comment");
-const isAuthenticated = require("../middleware/isAuthenticated");
-const User = require("../models/User.model");
+const Comment = require('../models/Comment');
+const isAuthenticated = require('../middleware/isAuthenticated');
+const User = require('../models/User.model');
 
 // See all comments
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const allComments = await Comment.find();
     res.status(200).json(allComments);
@@ -15,21 +15,21 @@ router.get("/", async (req, res, next) => {
 });
 
 // create a comment: route to be discussed (should have recipe id?)
-router.post("/create", isAuthenticated, async (req, res) => {
+router.post('/create', isAuthenticated, async (req, res) => {
   try {
     const createOneComment = await Comment.create(req.body);
+
+    res.status(201).json({
+      message: `Your comment has been CREATED 👏`,
+    });
   } catch (e) {
-    console.error(e);
+    next(e);
   }
-  const comment = req.body;
-  res.status(201).json({
-    message: `Your comment has been CREATED 👏`,
-  });
 });
 
 // update a comment
 
-router.patch("/:id", isAuthenticated, async (req, res, next) => {
+router.patch('/:id', isAuthenticated, async (req, res, next) => {
   try {
     const user = req.user;
     const comment = await Comment.findById(req.params.id);
@@ -63,7 +63,7 @@ router.patch("/:id", isAuthenticated, async (req, res, next) => {
 
 // delete a comment
 
-router.delete("/:id", isAuthenticated, async (req, res, next) => {
+router.delete('/:id', isAuthenticated, async (req, res, next) => {
   try {
     const user = req.user;
     const comment = await Comment.findById(req.params.id);
