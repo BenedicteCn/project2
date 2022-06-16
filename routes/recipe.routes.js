@@ -49,7 +49,7 @@ router.delete("/:id", isAuthenticated, isAdmin, async (req, res, next) => {
   try {
     const deletedThing = await Recipe.findByIdAndDelete(req.params.id);
     console.log(deletedThing);
-    res.json({ message: `I deleted ${deletedThing.name}` });
+    res.json({ message: `I deleted ${deletedThing.name} 🥺` });
   } catch (err) {
     next(err);
   }
