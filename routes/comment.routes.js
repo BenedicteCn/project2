@@ -23,7 +23,7 @@ router.post("/create", isAuthenticated, async (req, res) => {
   }
   const comment = req.body;
   res.status(201).json({
-    message: `Your comment has been CREATED`,
+    message: `Your comment has been CREATED 👏`,
   });
 });
 
@@ -36,7 +36,7 @@ router.patch("/:id", isAuthenticated, async (req, res, next) => {
     if (comment === undefined) {
       return res.status(404).json({
         error: {
-          message: `Comment doesn't exist.`,
+          message: `Comment doesn't exist. 🤡`,
         },
       });
     }
@@ -44,7 +44,7 @@ router.patch("/:id", isAuthenticated, async (req, res, next) => {
     if (comment.user._id.toString() != user._id.toString()) {
       return res.status(401).json({
         error: {
-          message: `You can only update your own comments.`,
+          message: `You can only update your own comments. 💩`,
         },
       });
     }
@@ -70,7 +70,7 @@ router.delete("/:id", isAuthenticated, async (req, res, next) => {
     if (comment === undefined) {
       return res.status(404).json({
         error: {
-          message: `Comment doesn't exist.`,
+          message: `Comment doesn't exist. 😖`,
         },
       });
     }
@@ -78,13 +78,13 @@ router.delete("/:id", isAuthenticated, async (req, res, next) => {
     if (comment.user._id.toString() != user._id.toString()) {
       return res.status(401).json({
         error: {
-          message: `You can only delete your own comments.`,
+          message: `You can only delete your own comments. 🤭`,
         },
       });
     }
     const deletedThing = await Comment.findByIdAndDelete(req.params.id);
     console.log(deletedThing);
-    res.json({ message: `I deleted your comment!` });
+    res.json({ message: `I deleted your comment! 🤓` });
   } catch (err) {
     next(err);
   }
