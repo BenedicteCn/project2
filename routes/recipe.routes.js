@@ -13,6 +13,11 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
+router.get("/home", function (req, res) {
+  const root = __dirname.replace("routes", "");
+  console.log(root);
+  res.sendFile("views/index.html", { root });
+});
 // Get recipe by name
 router.get("/:name", async (req, res, next) => {
   try {
@@ -36,6 +41,9 @@ router.get("/category/:name", async (req, res, next) => {
     next(err);
   }
 });
+
+//     res.status(200).json("ok");
+//     res.sendFile("index.html", { root: __dirname });
 
 router.delete("/:id", isAuthenticated, isAdmin, async (req, res, next) => {
   try {
