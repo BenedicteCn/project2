@@ -14,24 +14,25 @@ const users = [
   {
     username: "bene",
     email: "bene@gmail.com",
-    password: "bene123",
+    password: bcrypt.hashSync("tzu123", 10),
   },
 
   {
     username: "robert",
     email: "robert@gmail.com",
-    password: "robert123",
+    password: bcrypt.hashSync("tzu123", 10),
   },
 
   {
     username: "kate",
     email: "kate@gmail.com",
-    password: "kate123",
+    password: bcrypt.hashSync("tzu123", 10),
   },
 ];
 
 async function seedUsers() {
   await openConnection;
+  await User.deleteMany();
   const createdUsers = await User.create(users);
   console.log(`Created ${createdUsers.length} users.`);
   await mongoose.connection.close();

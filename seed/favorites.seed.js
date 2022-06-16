@@ -9,23 +9,34 @@ const favorites = [];
 
 async function seedFavorites() {
   await openConnection;
+  await Favorite.deleteMany();
   const allUsers = await User.find();
   const allRecipes = await Recipe.find();
   favorites.push({
     recipe: allRecipes[2]._id,
-    user: "62a85d9d47c22609c4f949f4",
-  });
-  favorites.push({
-    recipe: allRecipes[2]._id,
-    user: "62a85d9d47c22609c4f949f4",
-  });
-  favorites.push({
-    recipe: allRecipes[0]._id,
-    user: "62a85d9d47c22609c4f949f4",
+    user: allUsers[0]._id,
   });
   favorites.push({
     recipe: allRecipes[1]._id,
-    user: "62a85d9d47c22609c4f949f4",
+    user: allUsers[0]._id,
+  });
+  favorites.push({
+    recipe: allRecipes[0]._id,
+    user: allUsers[0]._id,
+  });
+  favorites.push({
+    recipe: allRecipes[1]._id,
+    user: allUsers[1]._id,
+  });
+
+  favorites.push({
+    recipe: allRecipes[2]._id,
+    user: allUsers[1]._id,
+  });
+
+  favorites.push({
+    recipe: allRecipes[3]._id,
+    user: allUsers[3]._id,
   });
 
   const createdFavorites = await Favorite.create(favorites);

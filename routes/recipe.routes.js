@@ -14,30 +14,13 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//Get recipe by name
-router.get("/:name", async (req, res, next) => {
+// Get recipe by name
+router.get("/category/:name", async (req, res, next) => {
   /**Your code goes here */
   try {
     const recipeName = req.params.name;
-    const oneRecipe = await Recipe.find({
-      name: { $regex: recipeName, $options: "i" },
-    });
-    res.status(200).json(oneRecipe);
-  } catch (err) {
-    next(err);
-  }
-});
-
-//Get recipe by category name
-router.get("category/:name", async (req, res, next) => {
-  /**Your code goes here */
-  try {
-    req.query.category === "Dessert"; // true
-    req.query.category === "Starter"; // true
-    const oneRecipeByCat = await Recipe.find({
-      category: { $regex: req.query.category, $options: "i" },
-    });
-    res.status(200).json(oneRecipeByCat);
+    const allRecipes = await Recipe.find({ category: recipeName });
+    res.status(200).json(allRecipes);
   } catch (err) {
     next(err);
   }
