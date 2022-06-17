@@ -223,7 +223,7 @@ async function seedRecipes() {
   await Recipe.deleteMany();
 
   const recipeScrappedInfo = await scrapeProduct(
-    "https://www.cuisineactuelle.fr/imgre/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fcac.2F2018.2F09.2F25.2F33a6cedb-51f7-4578-80b6-4ffd0098d906.2Ejpeg/400x400/quality/80/crop-from/center/crumble-pomme-framboises.jpeg"
+    "https://www.marmiton.org/recettes/recette_crumble-pommes-fraises-rhubarbe-aux-speculoos_30908.aspx"
   );
   console.log(recipeScrappedInfo);
 

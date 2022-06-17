@@ -10,7 +10,7 @@ require("dotenv").config();
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/project2";
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(MONGO_URI)
   .then((x) =>
     console.log(`Connected the Database: "${x.connections[0].name}"`)
   )

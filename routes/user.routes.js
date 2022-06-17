@@ -60,8 +60,6 @@ router.post("/signup", async (req, res, next) => {
       },
     });
 
-    console.log(transporter);
-
     const emailMessage = await transporter.sendMail({
       from: `<noreply@gmail.com>`,
       to: email,
