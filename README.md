@@ -18,6 +18,8 @@ Appetizer.
 The recipes are made from the seed or directly scrapped with Puppeteer from Marmiton.
 We use the Open Food Facts API to display the ingredients.
 
+Stacks used: Node.js, Express, Puppeteer, Bcrypt
+
 ## TEST IT!
 
 Find the documentation here: https://documenter.getpostman.com/view/21216938/UzBjrTKm
